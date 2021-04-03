@@ -20,7 +20,7 @@ Tech Stack Used : Python - Flask
 
 - GET Request to '127.0.0.1:5000/search?q=fam+pay' would fetch all the stored videos which have even one word matching with either video title or video description
 
-###Example - 
+## Example - 
 
 - 'http://127.0.0.1:5000/?page_no=5&page_size=20'
 - 'http://127.0.0.1:5000/' - By default it take page_no = 1 and page_size = 10
