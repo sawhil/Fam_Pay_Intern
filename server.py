@@ -88,13 +88,35 @@ def index():
 			'thumbnail_url' : vid.thumbnail_url,
 			'publishing_time' : vid.publishing_time,
 			'id' : vid.id
-			})
+		})
 	return ret
 
 
 # Decorator for Routing Search Request
 @app.route('/search', methods = ['GET'])
 def search():
+	search_txt = request.args['q'].split()
+	videos = (
+		Video.query
+		.order_by(Video
+		.publishing_time.desc())
+		.all()
+	)
+	ret = {"data" : []}
+	for vid in videos:
+		if (any(word in vid.title for word in search_txt) or any(word in vid.title for word in search_txt)):
+			ret["data"].append({
+				'title' : vid.title,
+				'description' : vid.description,
+				'thumbnail_url' : vid.thumbnail_url,
+				'publishing_time' : vid.publishing_time,
+				'id' : vid.id
+			})
+	return ret
+
+
+
+
 	return "This will return all the vids based on the search query"
 
 if __name__ == "__main__":
