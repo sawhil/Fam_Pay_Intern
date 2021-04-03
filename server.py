@@ -44,9 +44,6 @@ def YT_API():
 	time_now = datetime.now()
 	last_req_time = time_now
 	req_time = last_req_time.replace(microsecond=0).isoformat()+'Z'
-	print("-----------------")
-	print(req_time)
-	print("-----------------")
 	
 	for api_key in api_keys:
 		# Youtube API Key
@@ -75,7 +72,6 @@ def YT_API():
 				video_publishing_time = result['snippet']['publishedAt']
 				vidIds.add(result['id']['videoId'])
 				video_publishing_time = datetime.strptime(video_publishing_time, '%Y-%m-%dT%H:%M:%SZ')
-				# print(video_publishing_time)
 				new_video = Video(title = video_title, description = video_description, thumbnail_url = video_thumbnail_url, publishing_time = video_publishing_time)
 				try:
 					db.session.add(new_video)
